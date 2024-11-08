@@ -1,0 +1,58 @@
+﻿@model List<Education>
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-dark bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="text-primary py-2">Education List</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-12 text-end">
+                <a asp-controller="Education" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> Create New Education
+                </a>
+            </div>
+        </div>
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th class="text-center">Degree</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-center">Start Education</th>
+                    <th class="text-center">End Education</th>
+                    <th class="text-center"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var education in Model)
+                {
+                    <tr>
+                        <td class="text-center">@education.Degree</td>
+                        <td class="text-center">@education.Description</td>
+                        <td class="text-center">@education.StartEducation</td>
+                        <td class="text-center">@education.EndEducation</td>
+                        <td class="text-center">
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Education" asp-action="Upsert" asp-route-id="@education.Id" class="btn btn-secondary mx-2">
+                                    <i class="bi bi-pencil-square" title="Edit"></i>
+                                </a>
+                                <a class="btn btn-primary mx-2" onclick="confirmDelete(@education.Id)">
+
+                                    <i class="bi bi-trash-fill" title="Delete"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/education.js"></script>
+}

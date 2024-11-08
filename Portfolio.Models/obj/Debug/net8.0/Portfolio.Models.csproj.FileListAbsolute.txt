@@ -1,0 +1,11 @@
+D:\My_Projects\Portfolio\Portfolio.Models\bin\Debug\net8.0\Portfolio.Models.deps.json
+D:\My_Projects\Portfolio\Portfolio.Models\bin\Debug\net8.0\Portfolio.Models.dll
+D:\My_Projects\Portfolio\Portfolio.Models\bin\Debug\net8.0\Portfolio.Models.pdb
+D:\My_Projects\Portfolio\Portfolio.Models\obj\Debug\net8.0\Portfolio.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\My_Projects\Portfolio\Portfolio.Models\obj\Debug\net8.0\Portfolio.Models.AssemblyInfoInputs.cache
+D:\My_Projects\Portfolio\Portfolio.Models\obj\Debug\net8.0\Portfolio.Models.AssemblyInfo.cs
+D:\My_Projects\Portfolio\Portfolio.Models\obj\Debug\net8.0\Portfolio.Models.csproj.CoreCompileInputs.cache
+D:\My_Projects\Portfolio\Portfolio.Models\obj\Debug\net8.0\Portfolio.Models.dll
+D:\My_Projects\Portfolio\Portfolio.Models\obj\Debug\net8.0\refint\Portfolio.Models.dll
+D:\My_Projects\Portfolio\Portfolio.Models\obj\Debug\net8.0\Portfolio.Models.pdb
+D:\My_Projects\Portfolio\Portfolio.Models\obj\Debug\net8.0\ref\Portfolio.Models.dll

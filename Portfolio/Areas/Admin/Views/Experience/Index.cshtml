@@ -1,0 +1,60 @@
+﻿@model List<Experience>
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-dark bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="text-primary py-2">Experiences List</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-12 text-end">
+                <a asp-controller="Experience" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> Create New Experience
+                </a>
+            </div>
+        </div>
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th class="text-center">Job Title</th>
+                    <th class="text-center">Company</th>
+                    <th class="text-center">Start Job</th>
+                    <th class="text-center">End Job</th>
+                    <th class="text-center"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var experience in Model)
+                {
+                    <tr>
+                        <td class="text-center">@experience.JobTitle</td>
+                        <td class="text-center">@experience.Company</td>
+                        <td class="text-center">@experience.StartJob</td>
+                        <td class="text-center">@experience.EndJob</td>
+                        <td class="text-center">
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Experience" asp-action="Upsert" asp-route-id="@experience.Id" class="btn btn-secondary mx-2">
+                                    <i class="bi bi-pencil-square" title="Edit"></i>
+                                </a>
+                                <a class="btn btn-primary mx-2" onclick="confirmDelete(@experience.Id)">
+
+                                    <i class="bi bi-trash-fill" title="Delete"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/experience.js"></script>
+}
+
+

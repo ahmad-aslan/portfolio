@@ -1,0 +1,72 @@
+﻿@model EducationOwnerVM
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-dark bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="text-primary py-2">@(Model.Education.Id != 0 ? "Update" : "Create") Education</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-4">
+        <form method="post" class="row">
+            <input asp-for="Education.Id" hidden />
+            <div class="row">
+                <div class="col-12">
+                    <div class="border p-3">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Education.Degree" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="Education.Degree" class="form-label"></label>
+                            <span asp-validation-for="Education.Degree" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Education.Description" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="Education.Description" class="form-label text-muted"></label>
+                            <span asp-validation-for="Education.Description" class="text-danger"></span>
+                        </div>                        
+                        <div class="form-floating mb-3">
+                            <input asp-for="Education.StartEducation" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="Education.StartEducation" class="form-label text-muted"></label>
+                            <span asp-validation-for="Education.StartEducation" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Education.EndEducation" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="Education.EndEducation" class="form-label text-muted"></label>
+                            <span asp-validation-for="Education.EndEducation" class="text-danger"></span>
+                        </div>                      
+                        <div class="form-floating mb-3">
+                            <select asp-for="Education.OwnerId" asp-items="@Model.OwnerList" class="form-select border-0 shadow">
+                                <option disabled selected>--Select Owner--</option>
+                            </select>
+                            <label asp-for="Education.OwnerId" class="text-muted"></label>
+                            <span asp-validation-for="Education.OwnerId" class="text-danger"></span>
+                        </div>                       
+                        <div class="row pt-2">
+                            <div class="col-6 col-md-3">
+                                @if (Model.Education.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                                }
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="Education" asp-action="Index" class="btn btn-outline-secondary border form-control">
+                                    Back To List
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>              
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,79 @@
+﻿@model ExperienceOwnerVM
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-dark bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="text-primary py-2">@(Model.Experience.Id != 0 ? "Update" : "Create") Experience</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-4">
+        <form method="post" class="row">
+            <input asp-for="Experience.Id" hidden />
+            <div class="row">
+                <div class="col-12">
+                    <div class="border p-3">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Experience.JobTitle" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="Experience.JobTitle" class="form-label"></label>
+                            <span asp-validation-for="Experience.JobTitle" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Experience.Company" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="Experience.Company" class="form-label text-muted"></label>
+                            <span asp-validation-for="Experience.Company" class=" text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Experience.StartJob" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="Experience.StartJob" class="form-label text-muted"></label>
+                            <span asp-validation-for="Experience.StartJob" class=" text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Experience.EndJob" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="Experience.EndJob" class="form-label text-muted"></label>
+                            <span asp-validation-for="Experience.EndJob" class=" text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Experience.Description" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="Experience.Description" class="form-label text-muted"></label>
+                            <span asp-validation-for="Experience.Description" class=" text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select asp-for="Experience.OwnerId" asp-items="@Model.OwnerList" class="form-select border-0 shadow">
+                                <option disabled selected>--Select Owner--</option>
+                            </select>
+                            <label asp-for="Experience.OwnerId" class="text-muted"></label>
+                            <span asp-validation-for="Experience.OwnerId" class="text-danger"></span>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col-6 col-md-3">
+                                @if (Model.Experience.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                                }
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="Experience" asp-action="Index" class="btn btn-outline-secondary border form-control">
+                                    Back To List
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

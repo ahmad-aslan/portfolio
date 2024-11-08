@@ -1,0 +1,205 @@
+﻿@model PortfolioVM
+
+<!-- Header Start -->
+<div class="header" id="header" >
+    <div class="content-inner" 
+    style="background: url('@Model.Owner.ProfileImage') right bottom no-repeat; background-size: contain;">
+        <p>I'm</p>
+        <h1>@Model.Owner.Name</h1>
+        <h2></h2>
+        <div class="typed-text">@Model.Owner.JobTitle</div>
+    </div>
+</div>
+<!-- Header End -->
+
+<!-- About Start -->
+<div class="about" id="about">
+    <div class="content-inner">
+        <div class="content-header">
+            <h2>About Me</h2>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-md-6 col-lg-5">
+                <img src="@Model.Owner.AboutImage" alt="Image">
+            </div>
+            <div class="col-md-6 col-lg-7">
+                <p>
+                    @Model.Owner.Description
+                </p>
+            </div>
+        </div>  
+        <div class="row">        
+            @{
+                var item = 0;
+                if (Model.Skills.Count() > 0)
+                {
+                    foreach (var skill in Model.Skills)
+                    {
+                        if (int.IsEvenInteger(item))
+                        {
+                            <div class="col-md-6">
+                                <div class="skills">
+                                    <div class="skill-name">
+                                        <p>@skill.SkillName</p><p>@skill.Rate%</p>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="@skill.Rate" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-md-6">
+                                <div class="skills">
+                                    <div class="skill-name">
+                                        <p>@skill.SkillName</p><p>@skill.Rate%</p>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="@skill.Rate" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        item++;
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+<!-- Education Start -->
+<div class="education" id="education">
+    <div class="content-inner">
+        <div class="content-header">
+            <h2>Education</h2>
+        </div>
+        <div class="row align-items-center">
+            @if (@Model.Educations.Count() > 0)
+            {
+                @foreach (var education in Model.Educations)
+                {
+                    <div class="col-md-6">
+                        <div class="edu-col">
+                            <span>@education.StartEducation <i>to</i> @education.EndEducation</span>
+                            <h3>@education.Degree</h3>
+                            <p>@education.Description</p>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<!-- Education End -->
+
+<!-- Experience Start -->
+<div class="experience" id="experience">
+    <div class="content-inner">
+        <div class="content-header">
+            <h2>Experience</h2>
+        </div>
+        <div class="row align-items-center">
+            @if (@Model.Experiences.Count() > 0)
+            {
+                @foreach (var experience in Model.Experiences)
+                {
+                    <div class="col-md-6">
+                        <div class="exp-col">
+                            <span>@experience.StartJob <i>to</i> @experience.EndJob</span>
+                            <h3>@experience.Company</h3>
+                            <h4>@experience.JobTitle</h4>
+                            <p>@experience.Description</p>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<!-- Experience End -->
+
+<!-- Portfolio Start -->
+<div class="portfolio" id="portfolio">
+    <div class="content-inner">
+        <div class="content-header">
+            <h2>Portfolio</h2>
+        </div>   
+        <div class="row portfolio-container">
+            @if (@Model.Projects.Count() > 0)
+            {
+                @foreach (var project in Model.Projects)
+                {
+                    <div class="col-lg-4 col-md-6 portfolio-item web-des">
+                        <div class="portfolio-wrap">
+                            <figure>
+                                @if (project.ProjectImages.Count() > 0)
+                                {
+                                    @foreach (var image in project.ProjectImages)
+                                    {
+                                        <img src="@image.ImageUrl" class="img-fluid" alt="">
+                                        <a href="@project.ProjectLink" class="link-preview" title="Preview"><i class="fa fa-link"></i></a>
+                                        <a href="@image.ImageUrl" class="link-details" data-lightbox="portfolio" data-title="@project.Title" title="Details">                                           
+                                            <i class="fa fa-eye"></i>                                            
+                                        </a>                                       
+                                    }
+                                }
+                                <a class="portfolio-title" href="">@project.Title <span>@project.Type</span></a>
+                            </figure>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<!-- Portfolio End -->
+
+<!-- Contact Start -->
+<div class="contact" id="contact">
+    <div class="content-inner">
+        <div class="content-header">
+            <h2>Contact</h2>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="contact-info">
+                    <p><i class="fa fa-user"></i>@Model.Owner.Name</p>
+                    <p><i class="fa fa-tag"></i>@Model.Owner.JobTitle</p>
+                    <p><i class="fa fa-envelope"></i><a href="mailto:@Model.Owner.Email">@Model.Owner.Email</a></p>
+                    <p><i class="fa fa-phone"></i><a href="tel:@Model.Owner.PhoneNumber">@Model.Owner.PhoneNumber</a></p>
+                    <p><i class="fa fa-map-marker"></i>@Model.Owner.Address</p>
+
+                    <div class="social">
+                        @if (Model.Socials.Count() > 0)
+                        {
+                            foreach (var social in Model.Socials)
+                            {
+                                <a class="btn" href="@social.Link"><i class="@social.Icon"></i></a>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+<!-- Footer Start -->
+<div class="footer">
+    <div class="content-inner">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <p>&copy; Copyright Ahmad Aslan. All Rights Reserved</p>
+            </div>
+            <div class="col-md-6">             
+                <p>Powered by <a href="#">Ahmad Aslan</a></p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->

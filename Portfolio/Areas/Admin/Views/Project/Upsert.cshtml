@@ -1,0 +1,107 @@
+﻿@model ProjectOwnerVM
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-dark bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="text-primary py-2">@(Model.Project.Id != 0 ? "Update" : "Create") Project</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Project.Id" hidden />
+            <div class="row">
+                <div class="col-12">
+                    <div class="border p-3">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Project.Title" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="Project.Title" class=" form-label"></label>
+                            <span asp-validation-for="Project.Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Project.Type" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="Project.Type" class="form-label text-muted"></label>
+                            <span asp-validation-for="Project.Type" class=" text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea asp-for="Project.Description" class="form-control border-0 shadow" placeholder=""></textarea>
+                            <label asp-for="Project.Description" class="form-label text-muted"></label>
+                            <span asp-validation-for="Project.Description" class=" text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Project.ProjectLink" class="form-control border-0 shadow" placeholder="" />
+                            <label asp-for="Project.ProjectLink" class="form-label text-muted"></label>
+                            <span asp-validation-for="Project.ProjectLink" class=" text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select asp-for="Project.OwnerId" asp-items="@Model.OwnerList" class="form-select border-0 shadow">
+                                <option disabled selected>--Select Owner--</option>
+                            </select>
+                            <label asp-for="Project.OwnerId" class="text-muted"></label>
+                            <span asp-validation-for="Project.OwnerId" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="file" name="files" class="form-control border-0 shadow" multiple />
+                            <label asp-for="Project.ProjectImages" class="form-label text-muted"></label>
+                        </div>                 
+                        @* <div class="card-body"> *@
+                            <div class="col-12">
+                                <div class="row">
+                                    @if (Model.Project.ProjectImages != null)
+                                    {
+                                        @foreach (var image in Model.Project.ProjectImages)
+                                        {
+                                            <div class="col-lg-4 col-sm-6">
+                                                <div class="row p-">
+                                                    <div class="col-12 p-1">
+                                                        <div class="card border-0 p-3 shadow border-top border-5 rounded">
+                                                            @if (image.Project != null && image.Project.ProjectImages.Count() > 0)
+                                                            {
+
+                                                                <img src="@image.ImageUrl" class="card-img-top rounded" style="height:100px" />
+                                                            }
+                                                            <div class="mt-2">
+                                                                <a asp-action="DeleteImage" class="btn btn-danger form-control" asp-route-imageId="@image.Id">
+                                                                    <i class="bi bi-trash-fill"></i> Delete
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            @* </div> *@
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col-6 col-md-3">
+                                @if (Model.Project.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                                }
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="Project" asp-action="Index" class="btn btn-outline-secondary border form-control">
+                                    Back To List
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
